@@ -9,4 +9,8 @@ class House
     @rooms = []
   end
 
+  def add_room(room)
+    @rooms.push(room)
+  end
+
 end
