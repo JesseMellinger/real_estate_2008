@@ -52,4 +52,26 @@ class HouseTest < Minitest::Test
     assert house2.above_market_average?
   end
 
+  def test_get_rooms_from_one_category
+    house = House.new("$400000", "123 sugar lane")
+
+    room_1 = Room.new(:bedroom, 10, '13')
+    room_2 = Room.new(:bedroom, 11, '15')
+    room_3 = Room.new(:living_room, 25, '15')
+    room_4 = Room.new(:basement, 30, '41')
+
+    house.add_room(room_1)
+    house.add_room(room_2)
+    house.add_room(room_3)
+    house.add_room(room_4)
+
+    actual_bedrooms = house.rooms_from_category(:bedroom).all? {|room| room.category == :bedroom}
+    actual_basements = house.rooms_from_category(:basement).all? {|room| room.category == :basement}
+
+    assert_equal 2, house.rooms_from_category(:bedroom).count
+    assert_equal 1, house.rooms_from_category(:basement).count
+    assert actual_bedrooms
+    assert actual_basements
+  end
+
 end
