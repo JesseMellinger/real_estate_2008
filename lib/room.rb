@@ -6,6 +6,11 @@ class Room
     @length = length
     @width = width
     @area = length * width.to_i
+    @is_painted = false
+  end
+
+  def is_painted?
+    @is_painted
   end
 
 end
