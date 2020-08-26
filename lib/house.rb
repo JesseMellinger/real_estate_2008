@@ -40,4 +40,10 @@ class House
     end.reverse
   end
 
+  def rooms_by_category
+    @rooms.group_by do |room|
+      room.category
+    end
+  end
+
 end
